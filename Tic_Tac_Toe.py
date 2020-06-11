@@ -8,7 +8,7 @@ game_count = 9
 player1x = "X"
 player2o = "O"
 your_turn = True
-win_player1 = ("X", "X", "X")
+win_player1 = ("X", "X", "X")  # To check if in possible winning lines
 win_player2 = ("O", "O", "O")
 
 
@@ -21,11 +21,11 @@ def get_winning_line():
     ]
     lines = [
         tuple(line) for line in indexes
-    ]
+    ]  # gets all the rows
     for i in range(3):
         tem_line = [
             line[i] for line in indexes
-        ]
+        ]  # gets the columns one by one
         lines.append(tuple(tem_line))
     tem_line = []
     tem_line2 = []
@@ -34,7 +34,7 @@ def get_winning_line():
         tem_line.append(indexes[i][i])
         tem_line2.append(indexes[i][index])
         index -= 1
-    lines.extend([tuple(tem_line), tuple(tem_line2)])
+    lines.extend([tuple(tem_line), tuple(tem_line2)])  # gets the diagonals
     if win_player1 in set(lines) and win_player2 not in set(lines):
         print("X wins")
         game_count = 0
@@ -47,7 +47,8 @@ def get_winning_line():
 
 
 def assign_coordinates():  # this function creates a unique data structure with coordinates associated
-    global coordinates, cells  # with cells
+    """the function associates the coordinates with the cells"""
+    global coordinates, cells  # with cells. [ [ [coordinates], cell ] ] a nested list
     assign_coord = []
     coord = 0
     for item in cells:
@@ -57,6 +58,7 @@ def assign_coordinates():  # this function creates a unique data structure with 
 
 
 def create_field():
+    """Creates the games field"""
     global cells
     print(
         f"""
