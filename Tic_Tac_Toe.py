@@ -109,7 +109,7 @@ def play_game():
             if val_move is not None:
                 check_and_fill_space_with_move(val_move, player1x)
                 get_winning_line()
-        if game_count > 0:
+        if game_count > 0 and game_count % 2 == 0:
             player2 = input("Enter the coordinates: ")
             val_move = validate_move(player2)
             if val_move is not None:
