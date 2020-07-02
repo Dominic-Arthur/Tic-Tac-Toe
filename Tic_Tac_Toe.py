@@ -82,9 +82,7 @@ def check_and_fill_space_with_move(move, player):  # move is tuple
                 game_count -= 1
                 cells[index] = player
                 create_field()
-                your_turn = True
             else:
-                your_turn = False
                 print("This cell is occupied! Choose another one!")
 
 
@@ -102,19 +100,21 @@ def validate_move(move):
 
 
 def play_game():
+    global your_turn, game_count
     create_field()
     while game_count > 0:
-        if your_turn and game_count > 0:
+        if game_count > 0 and game_count % 2 != 0:
             player1 = input("Enter the coordinates: ")
             val_move = validate_move(player1)
             if val_move is not None:
                 check_and_fill_space_with_move(val_move, player1x)
                 get_winning_line()
-        if your_turn and game_count > 0:
+        if game_count > 0:
             player2 = input("Enter the coordinates: ")
             val_move = validate_move(player2)
             if val_move is not None:
                 check_and_fill_space_with_move(val_move, player2o)
                 get_winning_line()
 
-# play_game()
+
+play_game()
